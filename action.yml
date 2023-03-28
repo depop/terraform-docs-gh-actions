@@ -89,7 +89,7 @@ outputs:
 
 runs:
   using: docker
-  image: "docker://quay.io/terraform-docs/gh-actions:1.0.0"
+  image: Dockerfile
   env:
     INPUT_WORKING_DIR: ${{ inputs.working-dir }}
     INPUT_ATLANTIS_FILE: ${{ inputs.atlantis-file }}
@@ -109,6 +109,7 @@ runs:
     INPUT_GIT_PUSH_SIGN_OFF: ${{ inputs.git-push-sign-off }}
     INPUT_GIT_PUSH_USER_NAME: ${{ inputs.git-push-user-name }}
     INPUT_GIT_PUSH_USER_EMAIL: ${{ inputs.git-push-user-email }}
+    INPUT_WORKSPACE_OVERRIDE: ${{ inputs.workspace-override }}
 
 branding:
   icon: file-text
