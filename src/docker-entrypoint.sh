@@ -160,7 +160,7 @@ if [ ! -z "${INPUT_WORKSPACE_OVERRIDE}" ]; then
 fi
 cd "${GITHUB_WORKSPACE}"
 
-git_setup "$(GITHUB_WORKSPACE)"
+git_setup "${GITHUB_WORKSPACE}"
 
 if [ -f "${GITHUB_WORKSPACE}/${INPUT_ATLANTIS_FILE}" ]; then
     # Parse an atlantis yaml file
