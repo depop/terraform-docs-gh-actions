@@ -153,6 +153,7 @@ update_doc() {
 
 # go to github repo
 if [ ! -z "${INPUT_WORKSPACE_OVERRIDE}" ]; then
+    echo "::debug workspace-override provided: ${GITHUB_WORKSPACE}/${INPUT_WORKSPACE_OVERRIDE}"
     cd "${GITHUB_WORKSPACE}/${INPUT_WORKSPACE_OVERRIDE}"
 else
     cd "${GITHUB_WORKSPACE}"
