@@ -49,10 +49,12 @@ if [ -z "${INPUT_GIT_PUSH_USER_EMAIL}" ]; then
 fi
 
 git_setup() {
+    local git_workspace
+    git_workspace="$1"
     # When the runner maps the $GITHUB_WORKSPACE mount, it is owned by the runner
     # user while the created folders are owned by the container user, causing this
     # error. Issue description here: https://github.com/actions/checkout/issues/766
-    git config --global --add safe.directory /github/workspace
+    git config --global --add safe.directory "${git_workspace}"
 
     git config --global user.name "${INPUT_GIT_PUSH_USER_NAME}"
     git config --global user.email "${INPUT_GIT_PUSH_USER_EMAIL}"
@@ -154,12 +156,11 @@ update_doc() {
 # go to github repo
 if [ ! -z "${INPUT_WORKSPACE_OVERRIDE}" ]; then
     echo "::debug workspace-override provided: ${GITHUB_WORKSPACE}/${INPUT_WORKSPACE_OVERRIDE}"
-    cd "${GITHUB_WORKSPACE}/${INPUT_WORKSPACE_OVERRIDE}"
-else
-    cd "${GITHUB_WORKSPACE}"
+    GITHUB_WORKSPACE="${GITHUB_WORKSPACE}/${INPUT_WORKSPACE_OVERRIDE}"
 fi
+cd "${GITHUB_WORKSPACE}"
 
-git_setup
+git_setup "$(GITHUB_WORKSPACE)"
 
 if [ -f "${GITHUB_WORKSPACE}/${INPUT_ATLANTIS_FILE}" ]; then
     # Parse an atlantis yaml file
