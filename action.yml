@@ -78,6 +78,10 @@ inputs:
     description: Fail the job if there is any diff found between the generated output and existing file (ignored if `git-push` is set)
     required: false
     default: "false"
+  workspace-override:
+    description: Override the workspace directory. Must be a sub-path of `$GITHUB_WORKSPACE`
+    required: false
+    default: ""
 
 outputs:
   num_changed:

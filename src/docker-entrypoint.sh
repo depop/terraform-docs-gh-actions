@@ -147,12 +147,16 @@ update_doc() {
     fi
 
     if [ "${INPUT_OUTPUT_METHOD}" == "inject" ] || [ "${INPUT_OUTPUT_METHOD}" == "replace" ]; then
-        git_add "${working_dir}/${OUTPUT_FILE}"
+        git_add "${working_dir}/${INPUT_OUTPUT_FILE}"
     fi
 }
 
 # go to github repo
-cd "${GITHUB_WORKSPACE}"
+if [ ! -z "${INPUT_WORKSPACE_OVERRIDE}" ]; then
+    cd "${GITHUB_WORKSPACE}/${INPUT_WORKSPACE_OVERRIDE}"
+else
+    cd "${GITHUB_WORKSPACE}"
+fi
 
 git_setup
 
