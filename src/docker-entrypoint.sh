@@ -60,7 +60,6 @@ git_setup() {
     git config --global user.email "${INPUT_GIT_PUSH_USER_EMAIL}"
     git fetch --depth=1 origin +refs/tags/*:refs/tags/* || true
     git branch
-    git status
 }
 
 git_add() {
